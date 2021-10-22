@@ -1,0 +1,6 @@
+2021-10-22T20:45:01+00:00 MacBook-Pro-de-FZ.local#01 I: Start test test suite for sort_desc:0:empty.
+2021-10-22T20:45:01+00:00 MacBook-Pro-de-FZ.local#01 I: Test test suite for sort_desc:0:empty is successful.
+2021-10-22T20:45:01+00:00 MacBook-Pro-de-FZ.local#01 I: End test test suite for sort_desc:0:empty.
+2021-10-22T20:45:01+00:00 MacBook-Pro-de-FZ.local#01 I: Start test test suite for sort_desc:2:negative.
+2021-10-22T20:45:01+00:00 MacBook-Pro-de-FZ.local#01 I: Test test suite for sort_desc:2:negative is successful.
+2021-10-22T20:45:01+00:00 MacBook-Pro-de-FZ.local#01 I: End test test suite for sort_desc:2:negative.

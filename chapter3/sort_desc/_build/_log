@@ -1,0 +1,12 @@
+### Starting build.
+# Target: sort_desc_test.ml.depends, tags: { debug, extension:ml, file:sort_desc_test.ml, ocaml, ocamldep, quiet }
+/Users/fz/.opam/default/bin/ocamldep.opt -modules sort_desc_test.ml > sort_desc_test.ml.depends
+# Target: sort_desc.ml.depends, tags: { debug, extension:ml, file:sort_desc.ml, ocaml, ocamldep, quiet }
+/Users/fz/.opam/default/bin/ocamldep.opt -modules sort_desc.ml > sort_desc.ml.depends # cached
+# Target: sort_desc.cmo, tags: { byte, compile, debug, extension:cmo, extension:ml, file:sort_desc.cmo, file:sort_desc.ml, implem, ocaml, quiet }
+/Users/fz/.opam/default/bin/ocamlc.opt -c -I /Users/fz/.opam/default/lib/bytes -I /Users/fz/.opam/default/lib/ocaml -I /Users/fz/.opam/default/lib/ounit2 -I /Users/fz/.opam/default/lib/ounit2/advanced -I /Users/fz/.opam/default/lib/stdlib-shims -g -o sort_desc.cmo sort_desc.ml # cached
+# Target: sort_desc_test.cmo, tags: { byte, compile, debug, extension:cmo, extension:ml, file:sort_desc_test.cmo, file:sort_desc_test.ml, implem, ocaml, quiet }
+/Users/fz/.opam/default/bin/ocamlc.opt -c -I /Users/fz/.opam/default/lib/bytes -I /Users/fz/.opam/default/lib/ocaml -I /Users/fz/.opam/default/lib/ounit2 -I /Users/fz/.opam/default/lib/ounit2/advanced -I /Users/fz/.opam/default/lib/stdlib-shims -g -o sort_desc_test.cmo sort_desc_test.ml
+# Target: sort_desc_test.byte, tags: { byte, debug, dont_link_with, extension:byte, file:sort_desc_test.byte, link, ocaml, program, quiet }
+/Users/fz/.opam/default/bin/ocamlc.opt -I /Users/fz/.opam/default/lib/bytes -I /Users/fz/.opam/default/lib/ocaml -I /Users/fz/.opam/default/lib/ounit2 -I /Users/fz/.opam/default/lib/ounit2/advanced -I /Users/fz/.opam/default/lib/stdlib-shims stdlib_shims.cma unix.cma oUnitAdvanced.cma oUnit.cma -g sort_desc.cmo sort_desc_test.cmo -o sort_desc_test.byte
+# Compilation successful.

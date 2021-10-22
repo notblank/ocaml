@@ -1,0 +1,7 @@
+"Rule: ocaml: ml -> cmo & cmi (%=sort_desc )": "\138\171\252r\248o\146\209U\149't\164`\1791"
+"Rule: ocaml dependencies ml (%=sort_desc_test )": "P\006 \191S\193Bq\134\007\196\164\014\030\2456"
+"Resource: /Users/fz/Documents/ocaml/chapter3/sort_desc/sort_desc.ml": "))\138_\r`\018\131i\200c\188\156\206\159}"
+"Rule: ocaml: cmo* -> byte (%=sort_desc_test )": "V\172r81\184u\1538\129\244z\132\149i\152"
+"Rule: ocaml dependencies ml (%=sort_desc )": "\2150Q!\006\142\027{q\172-\215\158\247\016\238"
+"Rule: ocaml: ml -> cmo & cmi (%=sort_desc_test )": "/\206\016\223\248\186\168\002Y\160\\\\\206N\201>"
+"Resource: /Users/fz/Documents/ocaml/chapter3/sort_desc/sort_desc_test.ml": "\147u\015D\250\156{\212\219\006\251m|\223\146\164"
