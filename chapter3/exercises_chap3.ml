@@ -83,17 +83,35 @@ one_zero [0; 3; 4];;
 
 
 (* take-drop *) 
-(* incomplete *)
-let rec take n lst acc =
-    match lst with 
-    | [] -> acc
-    | h::t -> take (n - 1) t h::acc;;
+let rec drop n lst =
+    match n, lst with 
+    | _, [] -> []
+    | 0, lst -> lst
+    | n, h::t -> drop (n - 1) t;;
 
-take 1 [8; 2; 3] [];;
+drop 2 [1; 2; 3; 5];;
+
+let take n lst =
+    let n_drop = (length lst) - n in
+    rev (drop n_drop (rev lst));;
 
 
+let rec from i j l = if i > j then l else from i (j - 1) (j :: l);;
+
+(* long lists to test tail-recursion of drop and take *)
+(** [i -- j] is the list containing the integers from [i] to [j], inclusive. *)
+let ( -- ) i j = from i j [];;
+
+let long_list = 0 -- 1_000_000;;
+
+take 10000 long_list;;
 
 
+(* BTS condition *)
+(* For any node n, every node in the left subtree of n has a value less than
+ * n’s value, and every node in the right subtree of n has a value greater than
+ * n’s value. *)
+(* write a function that verifies if a tree is a BST *)
 
 
 
