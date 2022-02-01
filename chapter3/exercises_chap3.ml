@@ -113,5 +113,59 @@ take 10000 long_list;;
  * n’s value. *)
 (* write a function that verifies if a tree is a BST *)
 
+(* let is_bst = *)
+
+type 'a tree = 
+    | Leaf
+    | Node of 'a * 'a tree * 'a tree;;
+
+
+let first_val t = 
+    match t with 
+    |Node (v, l, r) -> v;;
+
+(* min and max of a tree *)
+let rec fun_t_aux t v0 f = 
+    match t with
+    | Leaf -> v0 
+    | Node (v, l, r) -> 
+            let mt = (f (fun_t_aux l v0 f)(fun_t_aux r v0 f)) in f v mt;; 
+
+let max_t t = 
+    let v0 = first_val t in fun_t_aux t v0 max;;
+
+let min_t t = 
+    let v0 = first_val t in fun_t_aux t v0 min;;
+
+(* in progress *)
+let rec is_bst t = 
+    match t with
+    | Leaf -> true
+    | Node (v, l, r) -> 
+            let vl = min_t r in
+            let vr = max_t l in
+                v >= vl && v <= vr && is_bst l;;
+(* examples *)
+let t = 
+    Node(-15, 
+        Node(-20, Leaf, Leaf),
+        Node(-3, 
+            Node(-10, Leaf, Leaf), 
+            Leaf)
+        );;
+
+let t = 
+    Node(2, 
+        Node(1, Leaf, Leaf),
+        Node(5, 
+            Node(4, Leaf, Leaf), 
+            Node(18, Leaf, Leaf))
+        );;
+
+is_bst t;;
+
+
+let maxt = max_t t;;
+let mint = min_t t;;
 
 
