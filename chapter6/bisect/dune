@@ -1,0 +1,4 @@
+(executable
+ (name test_sorts)
+ (libraries ounit2 qcheck)
+ (instrumentation (backend bisect_ppx)))
