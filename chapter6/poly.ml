@@ -66,6 +66,15 @@ let get_index = List.mapi (fun i a -> i);;
 (** [sum_lists a b] is the list with entries [ai + bi] *)
 let sum_lists = List.map2 (fun a b -> a + b);;
 
+(** *)
+let rec zeroes n l =
+    if n = 0 then l 
+    else zeroes (n - 1) (0:: l);;
+
+zeroes 10 [];;
+
+
+
 (** idea multiply and keep track of indices to form pq monomials *)
 sum_lists [2; 3; 4] [1; 1; 1];;
 get_index [2; 3; 4];;
