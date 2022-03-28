@@ -44,6 +44,7 @@ end;;
 module TreeMap = Map.Make(TreeKey);;
 
 (** trees to lists *)
+(** todo: map general tree with v1,...,vn vals to [v1;...;vn] list*)
 let m = 
     let open TreeMap in
     empty
