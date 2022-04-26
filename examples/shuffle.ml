@@ -1,3 +1,7 @@
+module type SHUFFLE = sig
+    type a' t
+    val play_card : 'a -> 'a t -> 'a
+end
 
 let rec repeat m n l = 
     match n with
