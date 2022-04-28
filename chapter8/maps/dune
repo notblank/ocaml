@@ -1,0 +1,3 @@
+(executable 
+    (name maps_tests)
+    (libraries ounit2))
