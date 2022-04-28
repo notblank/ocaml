@@ -18,5 +18,16 @@ module type Map = sig
 
     (**  [empty] is the empty map. *)
     val empty : ('k, 'v) t
+     
+    (** [of_list lst] is a map containing the bindings in the association list.
+     * Requires: [lst] does not contain duplicate keys. *)
+    val of_list : ('k * 'v) list -> ('k, 'v) t
+
+    (** [bindings m] is an association list containing the same bindings as
+     * [m]. The resulting list contains no duplicates.*)
+    val bindings : ('k, 'v) t -> ('k, 'v) list
 
 end
+
+
+
