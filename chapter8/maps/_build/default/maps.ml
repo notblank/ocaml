@@ -54,7 +54,6 @@ module AssocListMap : Map = struct
 
     let empty = []
 
-    (** Efficiency: O(1).*)
     let of_list lst =
         lst
 
@@ -64,12 +63,10 @@ module AssocListMap : Map = struct
         m |> List.map fst |> List.sort_uniq Stdlib.compare
 
     (** [binding m k] is [(k, v)] where [v] is the value that [k] binds in [m].
-     * Requires: [k] is a key in [m]. 
-     * Efficiency: O(n).*)
+     * Requires: [k] is a key in [m]. *)
     let binding m k =
         (k, List.assoc k m)
 
-    (** Efficiency: O(n log n) + O(n) * O(n).*)
     let bindings m =
         List.map (binding m) (keys m) 
 end

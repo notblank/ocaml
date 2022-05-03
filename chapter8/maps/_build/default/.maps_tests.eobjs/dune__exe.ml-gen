@@ -1,0 +1,6 @@
+(** @canonical Dune__exe.Maps *)
+module Maps = Dune__exe__Maps
+
+
+(** @canonical Dune__exe.Maps_tests *)
+module Maps_tests = Dune__exe__Maps_tests
