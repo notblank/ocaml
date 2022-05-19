@@ -33,3 +33,9 @@ take 10 fibs;;
 let fib30_lazy = lazy (take 30 fibs |> List.rev |> List.hd);;
 let fib30 = Lazy.force fib30_lazy;;
 fib30;;
+
+
+(* Lazy sequences *)
+(* use lazy val for the tail *)
+
+type 'a lazy_seq = Cons of 'a * 'a lazy_seq Lazy.t;;
