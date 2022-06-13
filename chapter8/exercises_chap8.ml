@@ -54,20 +54,28 @@ load_factor tab;;
 let ci_equal s1 s2 =
     let ls1 = (String.lowercase_ascii s1) in
     let ls2 = (String.lowercase_ascii s2) in
-    String.equal ls1 ls2;;
+    String.equal ls1 ls2
 
-module CiStrHash =
+(* if two keys are equal according to equal, then they should hash to the same
+   value *)
+module CiStrHash = 
     struct
         type t = string
         let equal s1 s2 = ci_equal s1 s2
-        let hash s = Hashtbl.hash s
-        let ci_add tbl k v = Hashtbl.add tbl (String.lowercase_ascii k) v
+        let hash s = Hashtbl.hash (String.lowercase_ascii s)
     end;;
 
 module CiStrHashtbl = Hashtbl.Make(CiStrHash);;
 
 let h = CiStrHashtbl.create 11;;
-CiStrHashtbl.ci_add h "Hola" 21;;
+CiStrHashtbl.add h "Hola" 21;;
 CiStrHashtbl.find h "Hola";;
 CiStrHashtbl.find h "hola";;
+CiStrHashtbl.find h "hoLa";;
+
+(* bad hash *)
+(* above set hash to a constant and use stats *)
+
+(* linear probing *)
+
 
