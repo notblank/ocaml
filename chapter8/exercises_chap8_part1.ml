@@ -50,7 +50,6 @@ Hashtbl.add tab "33" 33;;
 load_factor tab;;
 
 (* functorial interface *)
-(* in progress: Study Make functor *)
 let ci_equal s1 s2 =
     let ls1 = (String.lowercase_ascii s1) in
     let ls2 = (String.lowercase_ascii s2) in
@@ -58,6 +57,7 @@ let ci_equal s1 s2 =
 
 (* if two keys are equal according to equal, then they should hash to the same
    value *)
+(* need case insensitive equal and hash *)
 module CiStrHash = 
     struct
         type t = string
