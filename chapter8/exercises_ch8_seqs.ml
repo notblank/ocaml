@@ -5,7 +5,7 @@ let nats = from 0;;
 
 (* head and tail of a sequence *)
 let hd (Cons (h, _)) = h;;
-let tl (Cons (_, tl)) = tl ();;
+let tl (Cons (_, t)) = t ();;
 
 let rec take n s =
     if n = 0 then [] else hd s :: take (n - 1) (tl s);;
@@ -90,19 +90,35 @@ let rec e_terms0 x (Cons (h, t)) k =
     let pow_xh = Float.pow x (float_of_int h) in
     Cons (pow_xh /. fact_k, fun () -> e_terms0 x (t ()) (k + 1));;
 
+(* example *)
 let e_terms x = e_terms0 x (from 0) 0;;
 take 10 (e_terms 1.0);;
 
 (** [total s] is the sequence of sums [s1; s1 +. s2; s1 +. s2 +. s3; ... ]. *)
 (* in progress *)
-let rec total (Cons (h, t)) =
+let total s = 
+    let rec total0 (Cons (h, t)) acc0 =
+        let acc = acc0 +. h in
+        Cons (acc, fun () -> total0 (t ()) acc) in
+    total0 s 0.;;
+
+(* example *)
+let rec from_float n = Cons (n, fun () -> from_float (n +. 1.));;
+take 10 (total (from_float 1.));;
+take 10 (from_float 1.);;
+
+(** [within eps s] is the first element of [s] whose absolute difference with the
+    next value is strictly less than [eps]. *)
+let rec within eps (Cons (h, t)) =
     let hd_t = hd (t ()) in
-    let sum_s = Cons (h + hd_t, t) in
-    Cons (h + hd_t, fun () -> total sum_s);;
+    if abs_float (h -. hd_t) < eps then h else within eps (t ());; 
 
-take 10 (total (from 1));;
-take 10 (from 1);;
+(** [e x eps] is the approximation of [e^x] within [eps]. *)
+let e x eps = 
+    let exp_series = total (e_terms x) in
+    within eps exp_series;;
 
-
-
+(* example *)
+e 1.0 0.001;;
+exp 1.0;;
 
