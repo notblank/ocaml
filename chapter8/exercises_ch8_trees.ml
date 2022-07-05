@@ -10,12 +10,6 @@ module BSTSet (BST : Comparable) = struct
     type 'a tree = Node of 'a * 'a tree * 'a tree
                   |Leaf
 
-    (** [create low high] is the interval from [low] to [high] or is empty when
-        [low > high] *)
-    let create low high =
-        if Endpoint.compare low high > 0 then Empty
-        else Interval (low, high)
-
     (** [mem x t] is true uf [x] is in [t]. *)
     let rec mem x = function
         | Leaf -> false
