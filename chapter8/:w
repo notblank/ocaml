@@ -11,8 +11,7 @@ module type PROMISE = sig
 
     (** [make ()] is a new promise and resolver. The promise is pending. *)
     val make : unit -> 'a promise *  'a resolver
-
-    (** [return x] is a new promise resolved with value [x]. *)
+(** [return x] is a new promise resolved with value [x]. *)
     val return : 'a -> 'a promise
 
     (** [state p] is the state of a promise *)
@@ -121,19 +120,15 @@ end;;
 
 (* integer promise and resolver. *)
 (* in progress: print after resolved:
-    idea: create a print callback and bind.
-    problem: don't know how to return a promise. *)
+    idea: create a print callback and bind *)
 
 let (int_p : int Promise.promise), int_r = Promise.make ();;
 Promise.state int_p;;
 
 let print_int_promise (p : int Promise.promise)  = 
-    let out_p, out_r = Promise.make () in 
-    let st = Promise.state p in
-    match st with
-    |Resolved x -> 
-            let out_st = Promise.state out_p in
-            out_st <- Resolved (print_int x);;
+    let st = Promise.state p in st;;
+
+let int_print_c i = Lwt_io.printf "%i" i;; 
 
 Promise.resolve int_r 10;;
 Promise.state int_p;;
