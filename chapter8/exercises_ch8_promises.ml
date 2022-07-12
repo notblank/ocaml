@@ -36,6 +36,7 @@ module type PROMISE = sig
 end;;
 
 module Promise : PROMISE = struct
+
   type 'a state = Pending | Resolved of 'a | Rejected of exn
 
   (** RI: the input may not be [Pending] *)
@@ -119,45 +120,54 @@ module Promise : PROMISE = struct
 
 end;;
 
-(* integer promise and resolver. *)
-(* in progress: print after resolved:
-    idea: create a print callback and bind.
-    problem: don't know how to return a promise. *)
+(** integer promise and resolver. *)
+(* print after resolved:
+    idea: use ; p to output a promise.*)
 
 let (int_p : int Promise.promise), int_r = Promise.make ();;
 Promise.state int_p;;
 
-let print_int_promise (p : int Promise.promise)  = 
+let print_int_promise x = 
     let out_p, out_r = Promise.make () in 
-    let st = Promise.state p in
-    match st with
-    |Resolved x -> 
-            let out_st = Promise.state out_p in
-            out_st <- Resolved (print_int x);;
+    Promise.resolve out_r (print_int x); out_p;;
 
+(* prints 10 after bind *)
+open Promise;;
+int_p >>= print_int_promise;;
 Promise.resolve int_r 10;;
 Promise.state int_p;;
 
-(* Promise and resolve lwt *)
+(** Promise and resolve lwt *)
 #require "lwt";;
 (* Lwt i/o *)
 #require "lwt.unix";;
 let (p : int Lwt.t), r = Lwt.wait ();;
 let c_fnt int_p = Lwt_io.printf "The value is: %i\n" int_p;;
-let c_prom = read_line Lwt_io.stdin in Lwt.bind p c_fnt;;
 
 Lwt.state p;;
-Lwt.state c_prom;;
-
 Lwt.wakeup r 42;;
-Lwt.state p;;
-Lwt.state c_prom;;
+Lwt.bind p c_fnt;;
 
 (* timing challenge 1 *)
 let delay (sec : float) : unit Lwt.t = 
     Lwt_unix.sleep sec;;
 
 (** [delay_then_print] waits for 3 seconds then prints "done".*)
+let delay_then_print () =
+    let p = delay 3. in
+    let callback_print () = Lwt_io.print "done" in
+    Lwt.bind p callback_print;;
 
+delay_then_print ();;
+
+(** timing challenge 2 *)
+(* guess the output before running *)
+open Lwt.Infix
+
+let timing2 () =
+    let _t1 = delay 1. >>= fun () -> Lwt_io.printl "1" in
+    let _t2 = delay 2. >>= fun () -> Lwt_io.printl "2" in
+    let _t3 = delay 3. >>= fun () -> Lwt_io.printl "3" in
+    Lwt_io.printl "all done";;
 
 
