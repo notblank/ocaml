@@ -162,12 +162,52 @@ delay_then_print ();;
 
 (** timing challenge 2 *)
 (* guess the output before running *)
-open Lwt.Infix
+open Lwt.Infix;;
+
+(delay 1.) >>= (fun () -> Lwt_io.printl "1");;
 
 let timing2 () =
     let _t1 = delay 1. >>= fun () -> Lwt_io.printl "1" in
-    let _t2 = delay 2. >>= fun () -> Lwt_io.printl "2" in
-    let _t3 = delay 3. >>= fun () -> Lwt_io.printl "3" in
+    let _t2 = delay 10. >>= fun () -> Lwt_io.printl "2" in
+    let _t3 = delay 20. >>= fun () -> Lwt_io.printl "3" in
     Lwt_io.printl "all done";;
 
+(* prints "all done", then 1, 2, and 3 after 1, 10 and 20 seconds. *)
+timing2 ();;
+
+(** timing challenge 3 *)
+
+let timing3 () =
+    delay 1. >>= fun () -> 
+    Lwt_io.printl "1" >>= fun () -> 
+    delay 10. >>= fun () -> 
+    Lwt_io.printl "2" >>= fun () -> 
+    delay 20. >>= fun () ->
+    Lwt_io.printl "3" >>= fun () ->
+    Lwt_io.printl "all done";;
+
+(* prints 1, 2, and 3 and all done at the same time after 1, 10, 20 seconds. *)
+(* timing3 is a sequence of binds *)
+
+timing3 ();;
+
+(** timing challenge 4 *)
+
+let timing4 () =
+    let t1 = delay 1. >>= fun () -> Lwt_io.printl "1" in
+    let t2 = delay 10. >>= fun () -> Lwt_io.printl "2" in
+    let t3 = delay 20. >>= fun () -> Lwt_io.printl "3" in
+    Lwt.join [t1; t2] >>= fun () -> Lwt_io.print "all done";;
+
+(* Lwt.join returns a pending promise until all promises on the list are
+   resolved:
+       ex.
+       [t1; t2] prints 1, 2, all done.
+       [t1; t2; t3] prints 1, 2, 3, all done. *)
+timing4 ();;
+
+(** file monitor *)
+(* Lwt program that monitors the contents of a file. Open the file, read a
+   line, and as each line becomes available, print the line to stdout. The
+   program should terminte when it reaches the end of the file (EOF). *)
 
