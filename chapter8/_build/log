@@ -1,0 +1,5 @@
+# dune init project monitor
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root: /home/fz/gitrepos/ocaml/chapter8
+# Auto-detected concurrency: 4

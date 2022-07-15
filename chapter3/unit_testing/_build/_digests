@@ -1,7 +1,0 @@
-"Rule: ocaml: cmo* -> byte (%=sum_test )": "\162\133\028\024\139\163\127\177\205S\167M\1356E\242"
-"Rule: ocaml: ml -> cmo & cmi (%=sum_test )": "\237\014\149\171xw\203\158d\127~\\\135\173\005\130"
-"Rule: ocaml dependencies ml (%=sum_test )": "\t+\142\208MQ\181\148\249\2530'\022KD\180"
-"Resource: /Users/fz/Documents/ocaml/chapter3/unit_testing/sum.ml": "|\214\129\176%42r\025C\131\198\138\227\228\138"
-"Rule: ocaml: ml -> cmo & cmi (%=sum )": ")\147\127Mw:\220\161\178\133{\030\b\181T\204"
-"Resource: /Users/fz/Documents/ocaml/chapter3/unit_testing/sum_test.ml": "\166\192J\243\014\138\172\017\145T\1589\253\222\001\233"
-"Rule: ocaml dependencies ml (%=sum )": "\028U\179\136\221o/\\0<\190 f\163d\194"

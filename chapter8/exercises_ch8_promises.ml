@@ -206,8 +206,4 @@ let timing4 () =
        [t1; t2; t3] prints 1, 2, 3, all done. *)
 timing4 ();;
 
-(** file monitor *)
-(* Lwt program that monitors the contents of a file. Open the file, read a
-   line, and as each line becomes available, print the line to stdout. The
-   program should terminte when it reaches the end of the file (EOF). *)
 
